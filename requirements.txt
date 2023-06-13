@@ -1,0 +1,7 @@
+Flask-WTF==1.1.1
+Flask==2.2.3
+Flask-Env==2.0.0
+redis==4.5.4
+Werkzeug==2.2.3
+mysql-connector==2.2.9
+mysql-connector-python==8.0.27

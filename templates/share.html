@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/main.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/share.css') }}">
     <title>YouTube Video Sharing</title>
 
 </head>
@@ -20,31 +21,29 @@
       </form>
       {% else %}
       <p>Welcome {{email}}</p>
-      <button onclick="location.href='/share'" type="button" style="margin-right: 10px">
-         Share a movie</button>
+      <button onclick="location.href='/home'" type="button" style="margin-right: 10px">
+         Home</button>
 <!--      <button type="button" style="margin-right: 10px">Share a movie</button>-->
       <button onclick="location.href='/logout'" type="button">
          Logout</button>
       {% endif %}
     </div>
   </div>
-  {% for share in shares %}
-  <div class="container">
-    <div class="video">
-      <!-- YouTube video embed code here -->
-      {% if 'iframe' in share['url'] %}
-        {{share['url']}}
-      {% else %}
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/{{share['url']}}"></iframe>
-      {% endif %}
-    </div>
-    <div class="details">
-      <h1>{{share['title']}}</h1>
-      <p>Shared by: <i>{{share['user']}}</i></p>
-      <p>Description:</p>
-      <p><b>{{share['description']}}</b></p>
+  <div class="share-container">
+    <div class="share-window">
+        <h2>Youtube URL Sharing</h2>
+        <form method="POST" action="{{ url_for('share') }}">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <textarea name="url" placeholder="Youtube URL" rows="1" cols="30" required></textarea>
+            <div>
+                <textarea name="title" placeholder="Title" rows="1" cols="30" required></textarea>
+            </div>
+            <div>
+                <textarea name="description" placeholder="Description" rows="12" cols="30"></textarea>
+            </div>
+            <button type="submit">Share</button>
+        </form>
     </div>
   </div>
-  {% endfor %}
 </body>
 </html>

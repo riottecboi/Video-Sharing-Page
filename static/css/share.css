@@ -1,0 +1,45 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.share-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80%;
+}
+
+.share-window {
+    position: relative;
+    width: 500px;
+    padding: 20px;
+    background-color: #f2f2f2;
+    border-radius: 8px;
+}
+.share-window textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+
+.share-window button {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 480px) {
+    .share-window {
+        width: 90%;
+    }
+}

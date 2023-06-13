@@ -30,8 +30,12 @@ input {
   align-items: center;
 }
 
-.header-inputs input {
+.header-inputs input p{
   margin-right: 10px;
+}
+
+.header-inputs p{
+  padding-right: 20px;
 }
 
 .container {

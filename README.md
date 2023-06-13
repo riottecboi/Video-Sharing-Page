@@ -22,7 +22,7 @@ We can run this project by two ways:
 
 For the enviroment, please be sure running the project with python3.7+ and set up a settings.cfg file or enviroment variables:
 
-```http
+```
   SECRET_KEY = "supersecretkey"
   MYSQL_HOST = "xxx"
   MYSQL_USER = "xxx"
@@ -32,18 +32,18 @@ For the enviroment, please be sure running the project with python3.7+ and set u
 
 Install pip for suitable python3 version
 
-```http
+```
   sudo apt update
   sudo apt install python3-pip
 ```
 Install a requirement packages
 
-```http
+```
   pip install -r requirement.txt
 ```
 Run a code
 
-```http
+```
   python3 main.py
 ```
 ### Docker (docker composer)
@@ -52,13 +52,13 @@ Please build your own docker image and replace your image tag to the `image` in 
 
 Run docker compose at the level of directory which having the `docker-compose.yaml` file
 
-```http
+```
   docker-compose up
 ```
 
 or
 
-```http
+```
   docker compose up
 ```
 

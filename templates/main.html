@@ -28,6 +28,11 @@
       {% endif %}
     </div>
   </div>
+  <div class="popup-container" style="display: none">
+      <div id="popup" class="popup">
+          <span class="popup-close" onclick="closePopup()">X</span>
+      </div>
+  </div>
   {% for share in shares %}
   <div class="container">
     <div class="video">
@@ -46,5 +51,38 @@
     </div>
   </div>
   {% endfor %}
+  <script>
+      function closePopup() {
+            var popupContainer = document.querySelector('.popup-container');
+            popupContainer.style.display = 'none';
+        }
+      function fetchNotification() {
+          fetch('/stream')
+              .then(response => response.json())
+              .then(data => {
+                  if (data && data.notification) {
+                      var popupContainer = document.querySelector('.popup-container');
+                      var notification = data.notification;
+                      var message = document.createElement('p');
+                      message.innerText = notification;
+                      notificationMessage.appendChild(message);
+                      popupContainer.style.display = 'inline-block';
+                      // Shading the page after a certain time (in milliseconds)
+                      var shadingTime = 3000; // 3 seconds
+                      setTimeout(function() {
+                          var popupContainer = document.querySelector('.popup-container');
+                          popupContainer.style.display = 'none';
+                      }, shadingTime);
+                  }
+              })
+              .finally(() => {
+                  fetchNotification();
+              });
+      }
+
+      var notificationMessage = document.getElementById('popup');
+      fetchNotification();
+
+  </script>
 </body>
 </html>

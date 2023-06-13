@@ -2,7 +2,8 @@ from flask import Flask, render_template, redirect, url_for, request, session
 from flask_env import MetaFlaskEnv
 from datamodel import Datamodel
 from flask_wtf import CSRFProtect
-
+import json
+from redis import Redis
 
 class Configuration(metaclass=MetaFlaskEnv):
     SECRET_KEY = "supersecretkey"
@@ -13,6 +14,7 @@ class Configuration(metaclass=MetaFlaskEnv):
 
 app = Flask(__name__)
 csrf = CSRFProtect(app)
+redis = Redis()
 try:
     app.config.from_pyfile('settings.cfg')
 
@@ -60,9 +62,20 @@ def share():
         title = request.form.get('title')
         description = request.form.get('description')
         share = db.url_share(url, title, description, session.get('email'))
+        message = 'New shared video from {}'.format(session.get('email'))
+        redis.rpush('notifications', message)
         return redirect(url_for('home'))
 
     return render_template('share.html',userLoggedin=True, email=session.get('email'))
+
+@app.route('/stream')
+def stream():
+    notification = redis.blpop('notifications', timeout=3)
+
+    if notification:
+        return json.dumps({'notification': notification[1].decode('utf-8')})
+
+    return '', 204
 
 @app.route('/logout', methods=['GET'])
 def logout():

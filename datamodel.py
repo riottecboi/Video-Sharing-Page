@@ -95,7 +95,7 @@ class Datamodel:
                             url = url.split('watch?v=')[1].split('&')[0]
                         if 'youtu.be' in url:
                             url = url.split('youtu.be/')[1].split('?')[0]
-                        results.append({'url': result[1], 'title': result[2], 'description': result[3], 'user': result[4]})
+                        results.append({'url': url, 'title': result[2], 'description': result[3], 'user': result[4]})
                 return results
             except Exception as e:
                 conn.rollback()

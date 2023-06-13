@@ -1,0 +1,12 @@
+version: '3'
+services:
+  app:
+    image: test
+    container_name: youtube_video_sharing
+    ports:
+      - 8000:80
+    environment:
+      - MYSQL_HOST=localhost
+      - MYSQL_USER=xxx
+      - MYSQL_PASSWORD=xxx
+      - MYSQL_DB=video_sharing

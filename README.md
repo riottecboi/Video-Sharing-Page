@@ -5,9 +5,13 @@ This project is allowing user can share Youtube's link video to the website wher
 
 At this stage, every users can login or register automatically if the account is not exist in the database
 
-https://raw.githubusercontent.com/riottecboi/Video-Sharing-Page/master/demo/main.png
+On the main page
 
-https://raw.githubusercontent.com/riottecboi/Video-Sharing-Page/master/demo/share.png
+<img src="demo/main.png" alt="main-page">
+
+On the share page
+
+<img src="demo/share.png" alt="share-page">
 
 
 ## Stages
